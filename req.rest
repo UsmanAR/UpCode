@@ -1,7 +1,0 @@
-GET http://localhost:3000/testing
-Content-Type: application/json
-
-{
-    "name":"Muassir",
-    "password":"oiuyt123"
-}
