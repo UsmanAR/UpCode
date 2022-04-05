@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/home_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/homejs.js"></script>
+  <script src="../js/codechef.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <title>UpCode</title>
+</head>
+
+<body>
+  <!-- SVGS CODE -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+  </svg>
+
+  <div style="width: auto;margin: auto;">
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+      <a class="navbar-brand navbar-logo" href="/">UpCode</a>
+      <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+          </div>
+
+        </ul>
+      </div>
+      <% if(logged_in) { %>
+        <button style="margin-right:40px;" type="button" class="btn btn-light"
+          onclick="window.location.href='../create'"><a href="../create" class="txt3" style="text-decoration: none;"
+            onclick="window.location.href='../create'">ADD</a></button>
+        <button style="margin-right:40px;" type="button" class="btn btn-light"
+          onclick="window.location.href='../logout'"><a href="../logout" class="txt3"
+            style="text-decoration: none;">Logout</a></button>
+        <% } else { %>
+          <button style="margin-right:40px;" type="button" class="btn btn-light"><a href="../login" class="txt3"
+              style="text-decoration: none;">LOGIN/SignUp</a></button>
+          <% } %>
+    </nav>
+    <!--  CHALLENGES DETAILS  -->
+    <!-- 1)Problem name 
+    2) creator  
+    3) Link 
+    4) platform 
+    5) Time left  -->
+    <% if(posted) { %>
+      <% if(submitted) { %>
+        <br>
+        <div class="container">
+          <div class="alert alert-success d-flex align-items-center" style="width: 1000px;" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+              <use xlink:href="#check-circle-fill" />
+            </svg>
+            <div>
+              Challenge completed successfully!
+            </div>
+          </div>
+        </div>
+        <% } %>
+          <% if(!submitted) { %>
+            <br>
+            <div class="container">
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                  <use xlink:href="#exclamation-triangle-fill" />
+                </svg>
+                <div>
+                  Submit the correct solution and then try again!
+                </div>
+              </div>
+            </div>
+            <% } %>
+              <% } %>
+                <br>
+                <% var date=new Date(); %>
+                  <div class="container">
+                    <form method="POST" action="/challenge/<%=prob_name%>">
+                      <h1 name="prob_name" class="display-5"> Problem : <%=prob_name%>
+                        <br><br>
+                      </h1>
+                      <div class="two-col">
+                        <div class="col1">
+                          <h3 class="h3" name="link" >Link - <a style="font-size: larger;" href="<%=link%>"
+                              target="_blank">Problem</a> </h3>
+                          <br><br><br>
+                          <h3 name="platform" class="h3">Platform : <%=platform%>
+                          </h3>
+                        </div>
+                        <div class="col2">
+                          <br>
+                          <h3 class="h3" name="challenger">Posted by : <%=creator%>
+                          </h3>
+                          <br><br><br>
+                          <h3 class="h3" name="time">Time left :<%=parseInt((duration-date) /3600000)%> hours
+                              <%=Math.abs(parseInt(duration.getMinutes()))%> minutes
+                          </h3>
+                        </div>
+                      </div>
+                      <% if(!submitted) { %>
+                        <br><br><br><br>
+                        <button type="submit" style="width: 400px;height: 50px  ;font-size: large;margin-left: 400px;"
+                          class="btn btn-dark">SUBMIT</button>
+                        <br><br>
+                        <% } %>
+                  </div>
+  </div>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/homejs.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>UpCode</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="/">UpCode</a>
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+
+
+
+            </ul>
+        </div>
+        <% if(logged_in)  { %> 
+        <button style="margin-right:40px;" type="button" class="btn btn-light" onclick="window.location.href='./create'"><a href="./create"
+            class="txt3" style="text-decoration: none;" onclick="window.location.href='./create'">ADD</a></button>
+            <button style="margin-right:40px;" type="button" class="btn btn-light" onclick="window.location.href='./logout'"><a href="./logout"
+                class="txt3" style="text-decoration: none;">Logout</a></button>
+            <% } else { %>
+                <button style="margin-right:40px;" onclick="window.location.href='./login'" type="button" class="btn btn-light"><a href="./login"
+                    class="txt3" style="text-decoration: none;">LOGIN/SignUp</a></button>
+                <% } %>
+        </nav>
+    <!-- ONGOING CHALLENGES LIST  -->
+    <br>
+    <h1 class="display-4" style="margin-left: 550px;"> <u> Challenges</u></h1>
+    <br>
+    
+    
+    <div class="container">
+
+        <% if(!challenges.length) { %>
+            <br><br>
+        <div class="container">
+    <h3 style="margin-left: 350px;" >No ongoing challenges as of now!<br><br></h3>
+     <h3 style="margin-left:450px;" >Come back later :)</h3>
+    </div>
+                
+        <%} else {%>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Problem</th>
+                    <th scope="col">Challenger</th>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% var index=0; challenges.forEach(challenge=> { var date=new Date()%>
+                    <tr>
+                        <th scope="row">
+                            <%=index+=1%>
+                        </th>
+                        <td><a style="font-size: medium;" href="/challenge/<%=challenge.problem_name %>">
+                                <%=challenge.problem_name %>
+                            </a></td>
+                        <td>
+                            <%=challenge.creator%>
+                        </td>
+                        <td>
+                            <%=challenge.platform%>
+                        </td>
+                        <td id="sub_time">
+                            <%=parseInt((challenge.duration-date) /3600000)%> hours
+                                <%=Math.abs(parseInt(challenge.duration.getMinutes()))%> minutes
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <%}%>
+</body>
+
+</html>
