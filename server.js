@@ -80,8 +80,8 @@ app.get('/', (req, res) => {
             req.session.auth_code = req.query.code;
             // var access_code = getAccessToken(auth_code);
             // console.log("HERES THE ACCESS CODE " + (access_code));
-            var cli_id = "{your_client_id}";
-            var cli_secret = "{your_client_secret}";
+            var cli_id = "31862f2fafcd3cbf68e43ab7c5011018";
+            var cli_secret = "dc8a84c916e58dcec0f4e4dedb5b39ee";
             console.log("Auth code from session variable " + req.session.auth_code)
             var getAuthorized = {
                 uri: "https://api.codechef.com/oauth/token",
