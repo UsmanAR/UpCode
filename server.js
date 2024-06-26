@@ -23,7 +23,7 @@ const corsOptions = {
     optionSuccessStatus: 200,
 }
 //mong.connect("mongodb://localhost:27017/UpCode").
-mong.connect("mongodb://localhost:27017/UpCode").
+mong.connect("mongodb://admin:ajZqy47tdaCph4ug@SG-upcode-db-64019.servers.mongodirector.com:27017/admin").
     then(() => console.log("Connection to MongoDB established successfully "))
     .catch((err) => console.log(err));
 app.set('view engine', 'ejs')
